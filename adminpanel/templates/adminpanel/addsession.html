@@ -1,0 +1,45 @@
+{% load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/style.css' %}" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootnotestrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+				<div class="container">
+				<hr><strong>Problem Name : {{ problem.p_name }} </strong><hr><strong>Contest Name : {{ problem.Contest.con_name }} </strong>
+				<hr>
+				<strong>Problem Statement :<br> {{ problem.p_disc }} </strong>
+				<hr>
+				
+				<form action="{%  url 'adminpanel:savesession' problem.id %}" method="post">
+				{% csrf_token %}
+      			<div class="form-group">
+			  	<label for ="description"> C Session Code :</label>
+			  	<textarea  class="form-control" id="description" name="c" placeholder="sample code" rows="10" required></textarea>
+				</div>
+				<div class="form-group">
+			  	<label for ="description"> Cpp Session Code :</label>
+			  	<textarea  class="form-control" id="description" name="cpp" placeholder="sample code" rows="10" required></textarea>
+				</div>
+				<div class="form-group">
+			  	<label for ="description"> Java Session Code :</label>
+			  	<textarea  class="form-control" id="description" name="java" placeholder="sample code" rows="10" required></textarea>
+				</div>
+				<div class="form-group">
+			  	<label for ="description"> Python Session Code :</label>
+			  	<textarea  class="form-control" id="description" name="python" placeholder="sample code" rows="10" required></textarea>
+				</div>
+				<div class="form-group">
+			  	<label for ="description"> Python3 Session Code :</label>
+			  	<textarea  class="form-control" id="description" name="python3" placeholder="sample code" rows="10" required></textarea>
+				</div>
+				<button type="submit" href="" class="btn btn-default">Add Sessions</button>
+				</form>
+				</div>

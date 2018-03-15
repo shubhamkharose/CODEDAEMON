@@ -1,0 +1,125 @@
+ <title>Codedaemon | CONTEST</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+
+{% extends 'home/base.html' %}
+{% load staticfiles %}
+{% block body %}<script>
+    $(function() {
+        $('.ui.item').hover(function () {
+            $(this).animate({
+                'opacity':'1'
+            }).css({'background-color':'#e7ebf0','color':'#6a86a4'});
+        }, function () {
+            $(this).animate({
+                'opacity':'0.7'
+            }).css({'background':'none','color':'black'});;
+        });
+    });
+  </script>
+<body style="background-color:#f3f3f3">
+  <div class="ui blue large secondary pointing menu">
+    <a class="ui large item " href="{% url 'home:contest' %}">
+      Codedaemon
+    </a>
+    <div class="right menu">
+      <a class="ui active item" href="{% url 'home:contest' %}">
+        Contest
+      </a>
+      <a class="ui item">
+        Practice
+      </a><a class="ui item" href="{% url 'home:contactPage' %}">
+        Contact
+      </a>
+      <a class="ui item" href="{% url 'home:profile' %}">
+      <img class="ui avatar image" src="{% static 'square-image.png' %}">
+        <span>{{ request.session.user }}</span>
+      </a>
+      <div class="item">
+          <a class="ui basic blue button" href="{% url 'home:logout' %}">Logout</a>
+      </div>
+    </div>
+  </div>
+{% if con %}
+<div class="ui container">
+  <div class="ui link cards">
+  {% for con in con %}
+  <script>
+    var x = setInterval(function() {
+        var countDownDate = new Date("{{con.start}}").getTime();
+        var now = new Date().getTime();
+        var countDownDateEnd = new Date("{{con.end}}").getTime();
+        var distance = countDownDate - now;
+        var activedistance=countDownDateEnd-now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("demo{{con.id}}").innerHTML = ""+days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+
+        if (now > countDownDate && now < countDownDateEnd) {
+            
+            document.getElementById("demo{{con.id}}").innerHTML = "ACTIVE";
+            document.getElementById("demo{{con.id}}").style = "color:green";
+        }
+        else if(now > countDownDateEnd)
+        {
+            document.getElementById("demo{{con.id}}").innerHTML = "ENDED";
+            document.getElementById("demo{{con.id}}").style = "color:red";
+        }
+
+       }, 
+  1000);
+  </script>
+    <div class="card">
+      <div class="image">
+        <img src="{% static 'home/images/image.jpg' %}">
+      </div>
+      <div class="content">
+        <div class="header">{{ con.con_name }}</div>
+        <div class="meta">
+          <a>Signups 493</a>
+        </div>
+        <center>
+        <div class="ui label description" id="demo{{con.id}}">
+        </div>
+        </center>
+      </div>
+      <div class="extra content">
+        
+        <span class="floated">
+          {{ con.start_time}}
+        </span>
+        <span class=" floated">
+          <a class="ui tag label">START</a>
+        </span>
+      </div>
+      
+      <div class="extra content">
+        <span class="floated">
+          {{ con.end_time}}
+        </span>
+        <span class=" floated">
+          <a class="ui tag label">END</a>
+        </span>
+      </div>
+      <div class="extra content">
+        <span class="floated">
+          {% if con in con_sign %}
+            <center><a href="{% url 'home:contest_details' con.id %}" class="ui blue mini button">ENTER</a></center>
+          {% else %}
+            <center><a href="{% url 'home:contest_signup' con.id %}" class="ui blue mini button">SIGNUP</a></center>
+          {% endif %}
+        </span>
+    </div>
+  </div>
+{% endfor %}
+</div>
+</div>
+{% else %}
+  <h3>you dont have contest</h3>
+{% endif %}
+</div>
+{% endblock %}

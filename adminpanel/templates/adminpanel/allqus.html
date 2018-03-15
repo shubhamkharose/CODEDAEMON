@@ -1,0 +1,5 @@
+{% for i in data %}
+	{{ i }}
+ &nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'adminpanel:addtest' i.id %}">add testcases</a> &nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'adminpanel:addsession' i.id %}">add session</a>
+<hr>
+{% endfor %}

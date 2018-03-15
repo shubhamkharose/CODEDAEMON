@@ -1,0 +1,74 @@
+{% extends 'home/base.html' %}
+{% load staticfiles %}
+{% block body %}
+<body style="background-color:#f3f3f3">
+  <div class="ui blue large secondary pointing menu">
+    <a class="ui large item " href="{% url 'home:contest' %}">
+      Codedaemon
+    </a>
+    <div class="right menu">
+      <a class="ui active item" href="{% url 'home:contest' %}">
+        Contest
+      </a>
+      <a class="ui item">
+        Practice
+      </a><a class="ui item" href="{% url 'home:contactPage' %}">
+        Contact
+      </a>
+      <a class="ui item" href="{% url 'home:profile' %}">
+      <img class="ui avatar image" src="{% static 'square-image.png' %}">
+        <span>{{ request.session.user }}</span>
+      </a>
+      <div class="item">
+          <a class="ui basic blue button" href="{% url 'home:logout' %}">Logout</a>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="conatiner">
+<div class="back">
+<center>
+	<strong class="name" style="margin-top:100px;">{{ contest.con_name }}</strong>
+</center>
+<br>
+<center>
+	<strong class="name" style="margin-top:100px;">{{ contest.con_date }}</strong>
+</center>
+<br>
+<center>
+	<strong class="name" style="margin-top:100px;">{{ contest.start_time }}----{{ contest.end_time }}</strong>
+</center>
+<br>
+<center>
+	<strong class="name" style="margin-top:100px;">{{ contest.org_name }}</strong>
+</center>
+<br>
+<center>
+	<strong class="ui black mini button" style="margin-top:100px;"><a href = "{% url 'home:contest_info' contest.id %}">Enter</a></strong>
+</center>
+</div>
+<div class="col-sm-12 main">
+	<strong class="data" style="margin-top:100px;">PRIZE</strong>
+  <div>
+    {{ contest.prize}}
+  </div>
+</div>
+<hr>
+<div class="col-sm-12 main">
+	<strong class="data" style="margin-top:100px;">RULE</strong>
+    <div>
+    {{ contest.rules}}
+  </div>
+</div>
+<hr>
+<div class="col-sm-12 main">
+	<strong class="data" style="margin-top:100px;">SCORING</strong>
+    <div>
+    {{ contest.scoring}}
+  </div>
+</div>
+<hr>
+</div>
+{% endblock %}

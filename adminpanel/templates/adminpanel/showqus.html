@@ -1,0 +1,123 @@
+{{ con_id }}
+
+{% load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/style.css' %}" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootnotestrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-10">
+
+
+  			<ul class="nav nav-tabs">
+   			 <li class="active"><a data-toggle="tab" href="#home"><span class="glyphicon glyphicon-home"></span>&nbsp;PROBLEM SET</a></li>
+    		
+  			</ul>
+  			<br>
+  			<br>
+  			<div class="tab-content">
+   		 		<div id="home" class="tab-pane fade in active">
+      				
+<div class="col-sm-12">
+  <form action="{% url 'adminpanel:addqus' %}" method="post">
+  {% csrf_token %}
+  	<div class="hed">
+<h4>DETAILS OF PROBLEM</h4>
+</div>
+<br>
+<br>
+		<div class="form-group">
+			  <label for="name">Contest ID:</label>
+			  <input type="text" class="form-control" id="name" name="id" placeholder="{{ con_id }}" value="{{ con_id }}">
+		</div>
+		<div class="form-group">
+			  	<label for ="description">Problem:</label>
+			  	<input type="text" class="form-control" id="description" name="problem" placeholder="problem name without spaces" required>
+		</div>
+		<div class="form-group">
+			  <label for="name">Marks:</label>
+			  <input type="text" class="form-control" id="name" name="marks" placeholder=" marks" required>
+		</div>
+		<div class="form-group">
+			  <label for="name">Level:</label>
+			  <input type="text" class="form-control" id="name" name="level" placeholder=" easy/mediam/hard" required>
+		</div>
+		<div class="form-group">
+			  	<label for ="description"> Discription:</label>
+			  	<textarea  class="form-control" id="description" name="disc" placeholder="Enter Your Message" rows="15" required></textarea>
+		</div>
+		<div class="form-group">
+			  	<label for ="description">Constraints:</label>
+			  	<textarea  class="form-control" id="description" name="cons" placeholder="Enter Your Message" rows="10" required></textarea>
+		</div>
+		<div class="form-group">
+			  	<label for ="description"> Input Format:</label>
+			  	<textarea  class="form-control" id="description" name="input" placeholder="Enter Your Message" rows="10" required></textarea>
+		</div>
+		
+		<div class="form-group">
+			  	<label for ="description">Output format:</label>
+			  	<textarea  class="form-control" id="description" name="output" placeholder="Enter Your Message" rows="10" required></textarea>
+		</div>
+		<div class="form-group">
+			  	<label for ="description"> Sample Input:</label>
+			  	<textarea  class="form-control" id="description" name="sample_input" placeholder="Enter Your Message" rows="10" required></textarea>
+		</div>
+		<div class="form-group">
+			  	<label for ="description"> Sample Output:</label>
+			  	<textarea  class="form-control" id="description" name="sample_output" placeholder="Enter Your Message" rows="10" required></textarea>
+		</div>
+
+		<div class="form-group">
+			  	<label for ="description"> Explanations : </label>
+			  	<textarea  class="form-control" id="description" name="exp" placeholder="Enter Your Message" rows="10" required></textarea>
+		</div>
+
+			  	<button type="submit" class="btn btn-primary" class="btn btn-default">ADD</button>
+		
+	</form>
+</div>
+				</div>
+	  
+	      </div>
+	     </div>
+	   </div>
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+	  
+	  
+	  
+	  
+	  
+
+  </div>
+
+
+
+</div>
+</div>
+
+
+    <hr>

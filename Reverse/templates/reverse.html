@@ -1,0 +1,327 @@
+{% extends 'home/base.html' %}
+{% load staticfiles %}
+{% block body %}
+
+
+<!-- Author : Onk_r -->
+
+
+
+  <title>Problem</title>
+  <script type="text/javascript">
+  $('.ui.dropdown')
+  .dropdown();
+
+  $(function() {
+    $('.ui.item').hover(function () {
+        $(this).animate({
+            'opacity':'1'
+        }).css({'background-color':'#e7ebf0','color':'#6a86a4'});
+    }, function () {
+        $(this).animate({
+            'opacity':'0.7'
+        }).css({'background':'none','color':'black'});;
+    });
+
+    $('#addtextbox').click(function(){
+      if ($(this).is(':checked')) {
+        $('#dynamic').html("<textarea id=\"input_from_user\" name=\"output\" rows=\"10\" cols=\"10\"></textarea>");
+      }
+      else if (!$(this).is(':checked')) {
+        $('#dynamic').html("");
+      }
+    });
+
+    $('#check').click(function(){
+      var input_for = document.getElementById('input_for').value;
+	  $('#check').attr('disabled',true).addClass('loading');
+	  $.post('/reverse/check/{{problem.p_name}}/', {'input':input_for,'csrfmiddlewaretoken': '{{ csrf_token }}'}, function(data){
+	    $('#reverse').html(data);
+
+	    $('#check').attr('disabled',false).removeClass('loading');
+		});
+    });
+    $('#mybutton').click(function() {
+      $(this).attr('disabled',true);
+        $('#mybutton').attr('disabled',true).addClass('loading');
+        var Lang = document.getElementById('Lang').value;
+        var Code = (editor.getValue()); 
+        $.post('/Compile_run/submit/{{ problem.id }}/', {'code': Code,'lang':Lang, 'csrfmiddlewaretoken': '{{ csrf_token }}'}, function(data){
+        $('#output2').html(data);
+        $('html, body').animate({ scrollTop:$(document).height()-$(window).height()},"fast");  
+        $('#mybutton').attr('disabled',false).removeClass('loading');
+        });
+    });
+
+    $('#mybutton1').click(function() {
+      if ($('#addtextbox').is(':checked')) {
+        $('#output2').html("");
+        $('#mybutton1').attr('disabled',true).addClass('loading');
+        var dyan = document.getElementById('input_from_user').value;
+
+        var Lang = document.getElementById('Lang').value;
+        var Code = (editor.getValue()); 
+        var status = 'yes';
+        $.post('/Compile_run/run/{{ problem.id }}/', {'code': Code,'lang':Lang,'Check_Status':status,'input':dyan, 'csrfmiddlewaretoken': '{{ csrf_token }}'}, function(data){
+          $('#output2').html("<p><strong class=\"header\">Input</strong></p><pre class=\"ui segment\" style=\"background-color: #f8f8f8;border:0px;\">"+dyan+"</pre><p><strong class=\"header\">Your Output</strong></p>"+"<pre class=\"ui segment\" style=\"background-color: #f8f8f8;border:0px;\">"+data);
+          $('html, body').animate({ scrollTop:$(document).height()-$(window).height()},"fast");  
+        $('#mybutton1').attr('disabled',false).removeClass('loading');
+        });
+      }
+      else if (!$('#addtextbox').is(':checked')) {
+        $('#output2').html("");
+        $('#mybutton1').attr('disabled',true).addClass('loading');
+        var Lang = document.getElementById('Lang').value;
+        var Code = (editor.getValue()); 
+        $.post('/Compile_run/run/{{ problem.id }}/', {'code': Code,'lang':Lang, 'csrfmiddlewaretoken': '{{ csrf_token }}'}, function(data){
+          $('#output2').html("<p><strong class=\"header\">Input</strong></p><pre class=\"ui segment\" style=\"background-color: #f8f8f8;border:0px;\">{{ problem.sample_input|escapejs}}</pre><p><strong class=\"header\">Your Output</strong></p>"+data);
+        $('html, body').animate({ scrollTop:$(document).height()-$(window).height() },"fast");    
+        $('#mybutton1').attr('disabled',false).removeClass('loading');
+        });
+      }
+      
+    });
+    $('#Lang').change(function() {
+      var Lang = document.getElementById('Lang').value;
+
+          $.post('/Compile_run/change/{{ problem.id }}/', {'lang':Lang, 'csrfmiddlewaretoken': '{{ csrf_token }}'}, function(data){
+            //alert(data);
+            editor.setValue(data);
+        });
+      });
+    
+  });
+  </script>
+  <script type="text/javascript">
+    function fun(){
+      var lang = document.getElementById('Lang').value;
+      if(lang == 'c') {
+        editor.session.setMode("ace/mode/" + lang + '_cpp');
+      }
+      else if(lang =='python3') {
+        editor.session.setMode("ace/mode/python");
+      }
+      else {
+        editor.session.setMode("ace/mode/" + lang);
+      }
+    }
+    function setLang(){
+      var lang = '{{ Lang }}';
+      document.getElementById('Lang').value = lang;
+      if(lang == 'c') {
+        editor.session.setMode("ace/mode/" + lang + '_cpp');
+      }
+      else if(lang =='python3') {
+        editor.session.setMode("ace/mode/python");
+      }
+      else {
+        editor.session.setMode("ace/mode/" + lang);
+      }
+    }
+  </script>
+  <style>
+    div.col {
+        float: left;
+        width: 50%;
+    }
+  </style>
+<body onload="setLang()" style="background-color:#f3f3f3">
+  <div class="ui blue large secondary pointing menu">
+    <a class="ui item " href="{% url 'home:contest' %}">
+      Codedaemon
+    </a>
+    <div class="right menu">
+      <a class="ui active item" href="{% url 'home:contest' %}">
+        Contest
+      </a>
+      <a class="ui item">
+        Practice
+      </a><a class="ui item" href="{% url 'home:contactPage' %}">
+        Contact
+      </a>
+      <a class="ui item" href="{% url 'home:profile' %}">
+      <img class="ui avatar image" src="{% static 'square-image.png' %}">
+        <span>{{ request.session.user }}</span>
+      </a>
+      <div class="item">
+          <a class="ui basic blue button" href="{% url 'home:logout' %}">Logout</a>
+      </div>
+    </div>
+  </div>
+
+<br>
+<div class="ui container">
+  <div class="ui breadcrumb" style="background-color:#f3f3f3;">
+    <a class="section" href="{% url 'home:contest_info' contest.id %}">{{ contest.con_name }}</a>
+    <i class="right angle icon divider"></i>
+    <div class="active section">{{ problem.p_name}}</div>
+  </div>
+
+  <div class="ui blue secondary pointing menu">
+    <a class="ui active item" href="{% url 'home:contest_details' contest.id %}">
+        Problem
+      </a>
+      <a class="ui item" href="{% url 'Leader:leader' contest.id %}">
+        Leaderboard
+      </a>
+      <a class="ui item" href="{% url 'discussion:disc' contest.id %}">
+        Discussions
+      </a>
+      <div class="right menu">
+        <a class="ui item">
+          TIME  : <span id="demo" style="color:#3498DB;"></span>
+        </a>
+        <a class="ui item">
+          RANK  : <span style="color:#3498DB;">{{ Rank }}</span>
+        </a>
+      </div>
+  </div>
+  <script>
+
+    var countDownDate = new Date("{{end}}").getTime();
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "LOCKED";
+            document.getElementById("demo").style = "color:red";
+        }
+    }, 1000);
+
+  </script>
+  <div class="ui wide ten column grid">
+    <div class="ui ten wide column">
+        <div class="ui text segment">
+        {% if Status == True %}
+            <div class="ui tiny ribbon green label">Solved</div>
+          {% else %}
+            <div class="ui tiny ribbon red label">NotSolved</div>
+          {% endif %}
+          <div class="ui segment">
+            <h2 class="ui header">{{ problem.p_name }}</h2>
+            <div class="ui label">
+              Marks :
+              <div class="detail">{{ problem.score }}</div>
+            </div>
+            
+            <div class="ui label">
+              Level :
+              <div class="detail">{{ problem.p_level }}</div>
+            </div>
+            
+            <div class="ui label">
+              Success Rate :
+              <div class="detail">{{ S_Rate }}</div>
+            </div>
+          </div>
+        <br>
+        <p>{{ problem.p_disc }}</p>
+        <p><strong class="header">Input Format</strong></p>
+        <p>{{ problem.p_input }}</p>
+        <p><strong class="header">Output Format</strong></p>
+        <p>{{ problem.p_output }}</p>
+        <p><strong class="header">Constraints</strong></p>
+        <p>{{ problem.p_cons }}</p>
+        <p><strong class="header">Sample Input</strong></p>
+        <pre class="ui segment" style="background-color: #f8f8f8;border:0px;">{{ problem.sample_input }}</pre>
+        <p><strong class="header">Sample Output</strong></p>
+        <pre class="ui segment" style="background-color: #f8f8f8;border:0px;">{{ problem.sample_output }}</pre>
+        <p><strong class="header">Reverse Engine</strong></p>
+	        <div class="ui form">
+	        	<div class="field">
+	        		<textarea id="input_for" rows="3" style="width:270;" cols="5"></textarea>
+	        			<button id="check" class="ui mini green button" >check</button>
+	        		<textarea id="reverse" rows="3" style="width:270;" cols="5"></textarea>
+	        	</div>
+	        </div>
+        </div>
+      </div>
+    <div class="ui six wide column" style="overflow:scroll; height:700px;">
+      <h2 class="header"><center>My Submissions </center></h2>
+      <table class="ui table" >
+      <thead>
+            <tr>
+                  {% for i in fields %}
+                      {% if i == "Sub time" %}
+                        <th>Time</th>
+                      {% else %}
+                        <th>{{i}}</th>
+                      {% endif %}
+
+                  {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for sub in sub_all %}
+               <tr>
+                   {% for i in sub %}
+              {% if forloop.counter > 1 %}
+                        <td>{{ i }}</td>
+              {% else %}
+                <td><a class="ui mini button" href="{% url 'Compile_run:code' problem.id i %}" target="_blank">view</a></td>
+              {% endif %}
+                   {% endfor %} 
+               </tr>
+             {% endfor %}
+          </tbody>
+        </table>
+    </div>
+  </div>
+  <div class="ui horizontal divider">
+    <h4 class="header">CODE EDITOR</h4>
+  </div>
+
+  <div class="ui segment">
+      <h2 class="ui left floated header">Enter your code</h2>
+      <div align="right" class="ten wide column">  
+      <select class="ui selection dropdown item" id="Lang" onchange="fun()" name="Lang">
+        <option value="c">C (5.4.0)</option>
+        <option value="c_cpp">C++ (5.4.0)</option>
+        <option value="java" >Java (1.8.0_131)</option>
+        <option value="python">Python (2.7.12)</option>
+        <option value="python3">Python (3.5.2)</option>
+      </select>
+      </div>    
+    <div class="ui clearing divider"></div>
+    <div id="editor">{{ session }}</div>
+    <div class="ui clearing divider"></div>
+    <h4 class="ui left floated header">Custom Input </h4>
+    <input class="ui checkbox" type="checkbox" id="addtextbox" style="margin-top:3px;">
+    <form class="ui form">
+    <div id="dynamic" class="field">
+    </div>
+    </form
+    <br>
+    <button id="mybutton1" class="ui blue button" >Run</button>
+    <button id="mybutton" class="ui blue button" >Submit</button>
+    <div class="ui horizontal divider">
+      <h4 class="header">Result</h4>
+    </div>
+    <div id="output2"></div>
+    <div id="output3"></div>
+  </div>
+</div>  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.7/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/github");
+    editor.session.setMode("ace/mode/c_cpp");
+  editor.setOptions({
+    maxLines: 100,
+    minLines: 20,
+    autoScrollEditorIntoView: true,
+    fontSize: "14pt"        
+  });
+  editor.renderer.setScrollMargin(10,10, 0, 0);
+  editor.$blockScrolling = Infinity ;
+</script>
+</body>
+{% endblock %}

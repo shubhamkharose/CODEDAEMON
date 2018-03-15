@@ -1,0 +1,59 @@
+{% load staticfiles %}
+
+{% if error_message %}
+  <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/style.css' %}" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootnotestrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<div class="container">
+
+<center><h3 class="hed"><span class="glyphicon glyphicon-list"></span>&nbsp;YOUR ACTIVE CONTESTS<span class="glyphicon glyphicon-task"></span></h3><a href="{% url 'adminpanel:details' %}">+Add New Contest</a></center>
+<br>
+{% for con in data %}
+<form action="{% url 'adminpanel:showqus' con.id %}" method="post">
+{% csrf_token %}
+
+<div class="row">
+  
+     <div class="col-sm-2">
+    <strong>{{ con.id }}-{{ con.con_name }}</strong>  
+    </div>
+    <div class="col-sm-1">
+    <strong>{{ con.con_date }}</strong>  
+    </div>
+    <div class="col-sm-2">
+    <strong>{{ con.start_time }}</strong>  
+    </div>
+    <div class="col-sm-2">
+    <strong>{{ con.end_time }}</strong>  
+    </div>
+    <div class="col-sm-2">
+    <strong><button class="btn btn-primary" name="submit">ADD CHALLENGE</button></strong>  
+    </div>
+
+</form>
+<form action="{% url 'adminpanel:allqus' con.id %}" method="post">
+{% csrf_token %}
+    <div class="col-sm-2">
+    <strong><button class="btn btn-success" name="submit">SHOW CHALLENGS</button></strong>  
+</div>
+    <div class="col-sm-1">
+ <a href="{% url 'Leader:index' con.id %}">@confirm Leaderboard</a>
+</div>
+</form>
+</div>
+<br>
+{% endfor %}
+</div>

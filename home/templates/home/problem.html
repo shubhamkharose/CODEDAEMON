@@ -1,0 +1,43 @@
+{% extends 'home/base.html' %}
+{% block body %}
+{% if error_message %}
+	<p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+<form action="" method="post">
+{% csrf_token %}
+
+	<div class="box" style="border-style:solid;border-width:2px;">
+	<a href="" style="font-size:30px">{{ problem.id}}-{{ problem.p_name }}</a>&nbsp;&nbsp;&nbsp;
+	<strong>MARKS:</strong>
+	&nbsp;
+	<a>{{ problem.p_mark }}</a>
+	&nbsp;&nbsp;
+	<strong>LEVEL:</strong>
+	&nbsp;
+	<a>{{ problem.p_level }}<a>
+	<br>
+	<hr>
+	<br>
+	<strong>STATEMENT:</strong>
+	<p>{{ problem.p_disc }}<p>
+	<strong>INPUT FORMAT:</strong>
+	<p>{{ problem.p_input }}<p>
+	<strong>CONSTRAINT:</strong>
+	<p>{{ problem.p_cons }}<p>
+	<strong>OUTPUT FORMAT:</strong>
+	<p>{{ problem.p_output }}<p>
+	<strong>SAMPLE INPUT:</strong>
+	<p>{{ problem.sample_input }}<p>
+	<strong>SAMPLE OUTPUT:</strong>
+	{{ problem.sample_output }}<p>
+	<strong>EXPLANATION:</strong>
+	<p>{{ problem.exp }}<p>
+
+	<input type="text" name="text" style="height:500px;width:600px"><br>
+	<center><input type="submit" value="enter"></center>
+	</div>
+	
+	
+</form>
+{% endblock %}

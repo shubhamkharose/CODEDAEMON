@@ -1,0 +1,139 @@
+
+    <meta charset="UTF-8">
+
+    <title>Codedaemon | contact</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+{% extends 'home/base.html' %}
+{% load staticfiles %}
+{% block body %}
+
+<body style="background-color:#f3f3f3">
+<div class="ui blue large secondary pointing menu">
+    <a class="ui item " href="{% url 'home:contest' %}">
+      Codedaemon
+    </a>
+    <div class="right menu">
+      <a class="ui item" href="{% url 'home:contest' %}">
+        Contest
+      </a>
+      <a class="ui item">
+        Practice
+      </a><a class="ui active item" href="{% url 'home:contactPage' %}">
+        Contact
+      </a>
+      <a class="ui item" href="{% url 'home:profile' %}">
+      <img class="ui avatar image" src="{% static 'square-image.png' %}">
+        <span>{{ request.session.user }}</span>
+      </a>
+      <div class="item">
+          <a class="ui basic blue button" href="{% url 'home:logout' %}">Logout</a>
+      </div>
+    </div>
+  </div>
+
+ <br>
+ <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h3>
+                   CONTACT US <small></small></h3>
+            </div>
+        </div>
+    </div>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="well well-sm" >
+                
+                <div class="row">
+                <div class="col-md-1"></div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="name">
+                                Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">
+                                Email</label>
+                                
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" /></div>
+                        
+                        <div class="form-group">
+                        <label for="sub">
+                                Subject:</label>
+                            <input type="text" class="form-control" id="sub" placeholder="Enter subject" required="required" />
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="name">
+                                Message</label>
+                            <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+                                placeholder="Message"></textarea>
+                        </div>
+                    
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary pull-right" style="background-color:black;" id="us">
+                            Send</button>
+                    </div>
+                    
+                    
+            </div>
+                </div>
+
+              
+            </div>
+        </div>
+        <div class="col-md-4">
+            <form>
+            <legend><span class="glyphicon glyphicon-globe"></span>&nbsp;DEVELOPER TEAM</legend>
+            <address>
+                
+                <ul class="name">
+                    <li>Onkar Sathe</li>
+                    <li>Vaibhav Thombre</li>
+                    <li>Shubham Kharose</li>
+                    <li>Ajay Kulkarni</li>
+                    <li>Ritesh Harel</li>
+                </ul>
+                <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;<span>Walchand college of engineering,Sangli</span>
+            </address>
+           
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+
+    <script type="text/javascript">
+
+  $(function() {
+     
+        $('#us').click(function() {
+        var name = document.getElementById('name').value;
+        var email=document.getElementById('email').value;
+        var sub=document.getElementById('sub').value;
+        var message=document.getElementById('message').value;
+          // You gotta include the csrf_token in your post data
+          $.post('/home/contact/', {'name': name,'email':email,'sub':sub,'message':message, 'csrfmiddlewaretoken': '{{ csrf_token }}'}, function(data) {
+            if(data == 'success')
+              alert('Thanks For Contact us..!!!')
+            else
+              alert('Invalid');
+             // append to inner html
+            //alert(data);
+         });
+      });
+    });
+
+  </script>
+{% endblock %}

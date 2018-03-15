@@ -1,0 +1,126 @@
+{% extends 'home/base.html' %}
+{% load staticfiles %}
+{% block body %}
+<title>Codedaemon | Discussion</title>
+<script>
+    $(function() {
+        $('.ui.item').hover(function () {
+            $(this).animate({
+                'opacity':'1'
+            }).css({'background-color':'#e7ebf0','color':'#6a86a4'});
+        }, function () {
+            $(this).animate({
+                'opacity':'0.7'
+            }).css({'background':'none','color':'black'});;
+        });
+    });
+    var countDownDate = new Date("{{end}}").getTime();
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "LOCKED";
+            document.getElementById("demo").style = "color:red";
+        }
+    }, 1000);
+
+  </script>
+<body style="background-color:#f3f3f3">
+  <div class="ui blue large secondary pointing menu">
+    <a class="ui item " href="{% url 'home:contest' %}">
+      Codedaemon
+    </a>
+    <div class="right menu">
+      <a class="ui active item" href="{% url 'home:contest' %}">
+        Contest
+      </a>
+      <a class="ui item">
+        Practice
+      </a><a class="ui item" href="{% url 'home:contactPage' %}">
+        Contact
+      </a>
+      <a class="ui item" href="{% url 'home:profile' %}">
+      <img class="ui avatar image" src="{% static 'square-image.png' %}">
+        <span>{{ request.session.user }}</span>
+      </a>
+      <div class="item">
+          <a class="ui basic blue button" href="{% url 'home:logout' %}">Logout</a>
+      </div>
+    </div>
+  </div>
+
+<br>
+<div class="ui container">
+  <div class="ui breadcrumb" style="background-color:#f3f3f3;">
+    <a class="section" href="{% url 'home:contest_details' contest.id %}">{{ contest.con_name }}</a>
+    <i class="right angle icon divider"></i>
+    <div class="active section">Leaderboard</div>
+  </div>
+
+  <div class="ui blue secondary pointing menu">
+    <a class="ui active item" href="{% url 'home:contest_details' contest.id %}">
+        Problem
+      </a>
+      <a class="ui item" href="{% url 'Leader:leader' contest.id %}">
+        Leaderboard
+      </a>
+      <a class="ui item" href="{% url 'discussion:disc' contest.id %}">
+        Discussions
+      </a>
+      <div class="right menu">
+        <a class="ui item">
+          TIME  : <span id="demo" style="color:#3498DB;"></span>
+        </a>
+        <a class="ui item">
+          RANK  : <span style="color:#3498DB;">{{ Rank }}</span>
+        </a>
+      </div>
+  </div>
+
+  <div class="ui grid">
+    <div class="one wide column">
+    </div>
+    <div class="fourteen wide column">
+      <table class="ui very basic table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th></th>
+            <th>Marks</th>
+            <th>Level</th>
+            <th>Success Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for problem , status in problems_status %}
+          <tr>
+            {% if problem.r_flag %}
+            <td><a href="{% url 'Reverse:index' problem.p_name %}">{{ problem.p_name }}</a></td>
+            {% else %}
+            <td><a href="{% url 'Compile_run:index' problem.p_name %}">{{ problem.p_name }}</a></td>
+            {% endif %}
+            {% if status is 1 %}
+            <td><i class="green checkmark icon"></i></td>
+            {% elif status is 2%}
+            <td><i class="red remove icon"></td>
+            {% else %}
+            <td></td>
+            {% endif %}
+            <td>{{ problem.score }}</td>
+            <td>{{ problem.p_level }}</td>
+            <td>{{ problem.s_rate }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

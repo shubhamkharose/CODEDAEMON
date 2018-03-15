@@ -1,0 +1,107 @@
+
+{% load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/style.css' %}" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootnotestrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.js' %}" charset="UTF-8"></script>
+<script type="text/javascript" src="{% static 'js/locales/bootstrap-datetimepicker.fr.js' %}" charset="UTF-8"></script>
+
+<link href="{% static 'css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+	
+</script>
+
+<div class="container" style="background:url("coding.jpg");">
+
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+  <form action="{% url 'adminpanel:addcon' %}" method="post">
+  {% csrf_token %}
+  	<div class="hed">
+<h3>ENTER THE BASICS OF YOUR CONTEST</h3>
+</div>
+<br>
+<br>
+	   <div class="form-group">
+			  <label for="name">Context name:</label>
+			  <input type="text" class="form-control" id="name" name="name" placeholder=" Enter Name">
+		</div>
+		<div class="form-group">
+			  <label for="name">Start Time:</label>
+			  <input type="text" class="form-control form_datetime" id="name" name="start_time" placeholder=" HH:MM:SS">
+			  <script type="text/javascript">
+		    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+		</script>
+		</div>  
+		
+		
+		<div class="form-group">
+			  <label for="name">End Time:</label>
+			  <input type="text" class="form-control form_datetime" id="name" name="end_time" placeholder=" HH:MM:SS">
+			  <script type="text/javascript">
+		    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+		</script>
+		</div>
+		<div class="form-group">
+			  <label for="name">Organisation Name:</label>
+			  <input type="text" class="form-control" id="name" name="org_name" placeholder=" Enter Name">
+			  
+		</div>
+<br>
+<br>
+		<div class="hed">
+<h3>ENTER THE DETAILS OF YOUR CONTEST</h3>
+</div>
+<br>
+<br>
+		<div class="form-group">
+			  <label for="name">Backgroung image::</label>
+			  <input type="file" class="form-control btn-primary" id="name" name="image" placeholder=" Enter Name">
+		</div>
+		<div class="form-group">
+			  <label for="name">Context Tagline:</label>
+			  <input type="text" class="form-control" id="name" name="tagline" placeholder=" Enter Name">
+		</div>
+		<div class="form-group">
+			  	<label for ="description"> Discription:</label>
+			  	<textarea  class="form-control" id="description" name="disc" placeholder="Enter Your Message" rows="10"></textarea>
+		</div>
+		<div class="form-group">
+			  	<label for ="description">Rules:</label>
+			  	<textarea  class="form-control" id="description" name="rules" placeholder="Enter Your Message" rows="10"></textarea>
+		</div>
+		<div class="form-group">
+			  	<label for ="description">Prizes:</label>
+			  	<textarea  class="form-control" id="description" name="prize" placeholder="Enter Your Message" rows="10"></textarea>
+		</div>
+		<div class="form-group">
+			  	<label for ="description">Scoring:</label>
+			  	<textarea  class="form-control" id="description" name="scoring" placeholder="Enter Your Message" rows="10"></textarea>
+		</div>
+		
+			  	<button type="submit" class="btn btn-primary" class="btn btn-default">SUBMIT</button>
+		
+	</form>
+</div>
+<div class="col-sm-2"></div>
+	
+</div>

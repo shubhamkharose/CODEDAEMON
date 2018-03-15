@@ -1,0 +1,287 @@
+{% extends 'home/base.html' %}
+{% load staticfiles %}
+{% block body %}
+<title>Codedaemon | Leaderboard</title>
+
+<script>
+    $(function() {
+        $('.ui.item').hover(function () {
+            $(this).animate({
+                'opacity':'1'
+            }).css({'background-color':'#e7ebf0','color':'#6a86a4'});
+        }, function () {
+            $(this).animate({
+                'opacity':'0.7'
+            }).css({'background':'none','color':'black'});;
+        });
+    });
+    var countDownDate = new Date("{{end}}").getTime();
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "LOCKED";
+            document.getElementById("demo").style = "color:red";
+        }
+    }, 1000);
+
+  </script>
+
+<body style="background-color:#f3f3f3">
+  <div class="ui blue large secondary pointing menu">
+    <a class="ui item " href="{% url 'home:contest' %}">
+      Codedaemon
+    </a>
+    <div class="right menu">
+      
+      <a class="ui item" href="{% url 'home:contest' %}">
+        Contest
+      </a>
+      <a class="ui item">
+        Practice
+      </a><a class="ui item" href="{% url 'home:contactPage' %}">
+        Contact
+      </a>
+      <a class="ui active mini item" href="{% url 'home:profile' %}">
+      <img class="ui avatar image" src="{% static 'square-image.png' %}">
+        <span>{{ request.session.user }}</span>
+      </a>
+      <div class="item">
+          <a class="ui basic blue button" href="{% url 'home:logout' %}">Logout</a>
+      </div>
+    </div>
+  </div>
+<br>
+<center>
+<div class="ui grid">
+<div class="two column row">
+<div class="column">
+<div class="ui card">
+  <div class="ui slide masked reveal image">
+    <img src="{% static 'home/images/web-user.jpg' %}" class="visible content">
+    <img src="{% static 'home/images/user.png' %}" class="hidden content">
+  </div>
+  <div class="content">
+    <a class="header">{{ data.name }}</a>
+    <div class="meta">
+      <span class="date">{{ data.email }}</span>
+    </div>
+  </div>
+  <div class="extra content">
+    <a>
+      <i class="users icon"></i>
+      0 followers
+    </a>
+  </div>
+</div>
+</div>
+<div class="column">
+  <br>
+  <br>
+  <h4 class="ui horizontal divider header">
+  <i class="Trophy icon"></i>
+  ACHIVIEWMENT
+</h4>
+<br>
+<div class="ui compact menu">
+  <a class="item">
+    <i class="icon Trophy"></i> GOLD
+    <div class="floating ui red label">0</div>
+  </a>
+  <a class="item">
+    <i class="icon Trophy"></i> SILVER
+    <div class="floating ui teal label">0</div>
+  </a>
+  <a class="item">
+    <i class="icon Trophy"></i> BRONZE
+    <div class="floating ui blue label">0</div>
+  </a>
+</div>
+</div>
+</div>
+</div>
+</center>
+<h4 class="ui horizontal divider header">
+  <i class="tag icon"></i>
+  Description
+</h4>
+<center><p>Hello,I am {{ data.username }}.Enjoying coding ...!!! </p></center>
+<h4 class="ui horizontal divider header">
+  <i class="bar chart icon"></i>
+  Details
+</h4>
+
+<table class="ui definition table">
+  <tbody>
+    <tr>
+      <td class="two wide column">Username</td>
+      <td>{{ data.username }}</td>
+    </tr>
+    <tr>
+      <td>Name:</td>
+      <td>{{ data.name }}</td>
+    </tr>
+    <tr>
+      <td>Gmail</td>
+      <td>{{ data.email }}</td>
+    </tr>
+    <tr>
+      <td>Contact</td>
+      <td>{{ data.contact }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 class="ui horizontal divider header">
+  <i class="tag icon"></i>
+  Save details
+</h4>
+<h4 class="ui horizontal divider header"></h4>
+<p>- </p>
+<br>
+<div class="ui grid">
+<div class="three column row">
+  <div class="column"></div>
+<div class="column">
+<form class="ui form segment" action="{% url 'home:profileUpdate' %}" method="Post">
+ {% csrf_token %} 
+  
+    <div class="field">
+      <label>Study center</label>
+      <input  name="clgname" id="clgname" type="text" value= "{{ data.clgname }}">
+    </div>
+    <div class="field">
+      <label>Languages Known</label>
+      <input type="text" name="languages" id="languages" value="{{ data.languages }}">
+    </div>
+    <div class="field">
+      <label>Experience</label>
+      <input placeholder="" name="experience" id="experience" type="text" value="{{ data.experience }}">
+    </div>
+  
+
+  <button type="submit" name="login" id="sub" value="login" class="ui primary submit button"  data-loading-text="saving In...." style="background-color:teal;">SAVE</button>
+
+  <div class="ui error message"></div>
+</form>
+</div>
+  <div class="column"></div>
+</div>
+</div>
+ <!-- <div class="ui container">
+  <form action="{% url 'home:profileUpdate' %}" method="Post">
+  {% csrf_token %} 
+  
+      <span class="glyphicon glyphicon-user" style="color:white;"></span>
+    </div>
+   </div>
+   <div class="col-sm-2">
+    <strong><p style="margin-top:15px;color:black;font-size:20px;">{{ data.name }}</p></strong>
+   </div>
+   <div class="col-sm-2"></div>
+    <div class="col-sm-1">
+    <div class="box">
+      <span class="glyphicon glyphicon-envelope" style="color:white;"></span>
+    </div>
+    </div>
+    <div class="col-sm-2">
+    <strong><p style="margin-top:15px;color:black;font-size:20px;">{{ data.email }}</p></strong>
+   </div>
+   <div class="col-sm-2"></div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-1">
+    <div class="box">
+      <center><h3 style="color:white;">U</h3></center>
+    </div>
+   </div>
+   <div class="col-sm-2">
+      <strong><p style="margin-top:15px;color:black;font-size:20px;">{{ data.username }}</p></strong>
+   </div>
+   <div class="col-sm-2"></div>
+    <div class="col-sm-1">
+    <div class="box">
+      <span class="glyphicon glyphicon-phone" style="color:white;"></span>
+    </div>
+    </div>
+    <div class="col-sm-2">
+    <strong><p style="margin-top:15px;color:black;font-size:20px;">{{ data.contact }}</p></strong>
+   </div>
+   <div class="col-sm-2"></div>
+  </div>
+  <br>
+  <br>
+  <div class="hed">
+  <center><strong><span style="font-size:20px;">YOUR DETAILS.......</span></strong></center>
+  </div>
+  <br>
+  <br>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-"></i>&nbsp;&nbsp;STUDY CENTER</div>
+                            <input type="text" class="form-control" name="clgname" id="clgname" placeholder="Walchand college of engineering,sangli" value= "{{ data.clgname }}">
+                        </div>
+                    </div>
+          <br>
+          <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-"></i>&nbsp;&nbsp;LANGUAGES KNOWN</div>
+                            <input type="text" class="form-control" name="languages" id="languages" placeholder="" value="{{ data.languages }}">
+                        </div>
+                    </div>
+          <br>
+          <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-"></i>&nbsp;&nbsp;WORK EXPERENCE</div>
+                            <input type="text" class="form-control" name="experience" id="experience" placeholder="" value="{{ data.experience }}">
+                      </div>
+                    </div>
+                      <button type="submit" name="login" id="sub" value="login" class="btn btn-primary btn-block bt-login"  data-loading-text="saving In...." style="background-color:black;">SAVE</button>
+
+                  </form>
+  
+
+</div>
+<br>
+<br>
+<br>
+<footer>
+    
+    <div class="container" style="background-color:black;">
+    <div class="col-md-5 col-sm-5" >
+        <h3>About us</h3>
+        <p>
+            If you passionate about coding, you’ve come to the right place.<br>
+        </p>
+    </div>
+    
+    <div class="col-md-5 col-sm-5" >
+        <h3>Contact Us</h3>
+        <ul>
+            <li>Phone : 9923117590 </li>
+            <li>E-mail : programtowin@gmail.com</li>
+        </ul>
+        <p>
+            <small>&copy; 2017 codedaemon reserved</small>
+        </p>
+      </div>
+      <div class="col-md-2 col-sm-2">
+        <ul class="sm" style="margin-top:30px;">
+            <li><a href="#" ><img src="https://www.facebook.com/images/fb_icon_325x325.png" class="img-responsive"></a></li>
+            <li><a href="#" ><img src="https://lh3.googleusercontent.com/00APBMVQh3yraN704gKCeM63KzeQ-zHUi5wK6E9TjRQ26McyqYBt-zy__4i8GXDAfeys=w300" class="img-responsive" ></a></li>
+            <li><a href="#" ><img src="http://playbookathlete.com/wp-content/uploads/2016/10/twitter-logo-4.png" class="img-responsive"  ></a></li>
+        </ul>
+    </div>
+    </div>
+</footer> 
+-->
+{% endblock %}

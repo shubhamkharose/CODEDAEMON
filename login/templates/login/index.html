@@ -1,0 +1,470 @@
+{% load staticfiles %}
+<html>
+<head>
+  <meta name="f3-site-verification" content="b3cdf2f484a4b7e1f59fe6045c818089">
+	<link type="text/css" media="screen" rel="stylesheet" href="https://f3.space/css/ribbon.css" />
+<meta charset="utf-8">
+	<meta name="viewport" content="width=devidev-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>CODEDAEMON</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'login/library/bootstrap/css/bootstrap-theme.min.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'login/library/bootstrap/css/bootstrap.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login/css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!-- Material Design Lite -->
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+   <link rel="stylesheet" 
+    href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.blue-purple.min.css" />
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+    <style type="text/css">
+      footer{
+    background-color:black;
+    height:300px;
+   
+    width:100%;
+    bottom:0;
+    font-weight:lighter;
+    color:white;
+}
+.footerHeader{
+    width:100%;
+    padding:1em;
+    background-color:rgba(52, 73, 94,1.0);
+    text-align:center;
+    color:white;
+}
+footer h3{
+    font-weight:lighter;
+}
+footer ul{
+    padding-left:5px;
+    list-style:none;
+}
+footer p{
+    text-align : justify;
+    font-size : 12px;
+}
+footer iframe {
+    width:100%;
+    position:relative;
+    height:170px;
+}
+.bak
+    {
+      
+      background-color: #F2F4F4;
+    }
+.sm{
+    list-style:none;
+    overflow:auto;
+}
+.sm li {
+    display: inline;
+    padding:5px;
+    float:left;
+} 
+.main-heading
+{
+  margin-top: 0px;
+}
+.sm li a img {
+    width:32px;
+}
+    </style>
+    
+</head>
+
+<body class="bak">
+<div id="voteribbon" class="vote-site white left">
+<a href="https://f3.space/website/codedaemon" target="_blank"></a>
+</div >
+
+    <nav  class=" nim-menu navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            <a class="navbar-brand" href="">CODEDAEMON</a>
+        </div>
+
+        
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#home" class="page-scroll active"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;<u>HOME</u></a></li>
+            <li><a href="#team" class="page-scroll"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;TEAM</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#myModal" class="page-scroll"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;LOGIN</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#myModal1" class="page-scroll"><i class="fa fa-address-card"></i>&nbsp;SIGNUP</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    
+   <section class="main-heading" id="home">
+       <div class="overlay">
+           <div class="container">
+               <div class="row">
+                   <div class="main-heading-content col-md-12 col-sm-12 text-center">
+        <h1 class="main-heading-title"><span class="main-element themecolor" style="color:white;" data-elements="code like never before,Coding platform to judge yourself"></span></h1>
+        <p class="main-heading-text">The coding platform to judge yourself.<br></p>
+        
+        <div class="btn-bar">
+          <a href="" data-toggle="modal" data-target="#myModal" class="btn btn-custom-outline">LOGIN</a>
+          <a href="" data-toggle="modal" data-target="#myModal1" class="btn btn-custom-outline">SIGNUP</a>
+        </div>
+        <br>
+         <p class="main-heading-text">Use updated browsers for better experience<br></p>
+       
+      </div>
+               </div>
+           </div>
+       </div>  
+      
+   </section>
+  
+  <section class="our-team" id="team">
+      <div class="container">
+       <div class="row text-center">
+          <div class="col-md-12">
+          <hr>
+              <h3 style="color:black;font-size:30px;"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Team</h3>
+          <hr>
+          <br>
+            <p class="a-slog"></p>
+          </div> 
+          <br>
+        </div>
+          <div class="row text-center">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+           <div class="thumbnail">
+            <img src="{% static 'login/images/Onkar.jpg' %}" class="img" alt="team-member" style="height:250px; width:250px;border-radius:10px;margin-top:7px;" />
+            <div class="caption">
+            <h4>Onkar Sathe</h4>
+           
+            </div>
+            <ul class="list-inline">
+              <li><a href="https://www.facebook.com/onkar.sathe.3517"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            </ul>
+          </div> <!-- team-member -->
+        </div><!-- team-member -->
+
+          <div class="col-sm-4">
+           <div class="thumbnail">
+            <img src="{% static 'login/images/ritz.jpg' %}" class="img" alt="team-member" style="height:250px; width:250px;border-radius:10px;margin-top:7px;" />
+            <div class="caption">
+            <h4>Ritesh Harel</h4>
+            
+            </div>
+            <ul class="list-inline">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            </ul>
+          </div> <!-- team-member -->
+        </div><!-- team-member -->
+        <div class="col-sm-2"></div>
+       
+      </div>
+      <div class="row text-center">
+          
+          <div class="col-sm-4">
+           <div class="thumbnail">
+            <img src="{% static 'login/images/shubham.jpg' %}" class="img" alt="team-member" style="height:250px; width:250px;border-radius:10px;margin-top:7px;" />
+            <div class="caption">
+            <h4>Shubham Kharose</h4>
+            
+            </div>
+            <ul class="list-inline">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            </ul>
+          </div> <!-- team-member -->
+        </div><!-- team-member -->
+
+          <div class="col-sm-4">
+           <div class="thumbnail">
+            <img src="{% static 'login/images/Ajay.jpg' %}" class="img" alt="team-member" style="height:250px; width:250px;border-radius:10px;margin-top:7px;" />
+            <div class="caption">
+            <h4>Ajay Kulkarni</h4>
+            
+            </div>
+            <ul class="list-inline">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            </ul>
+          </div> <!-- team-member -->
+        </div><!-- team-member -->
+
+          <div class="col-sm-4">
+           <div class="thumbnail">
+            <img src="{% static 'login/images/vaibhav.jpg' %}" class="img" alt="team-member" style="height:250px; width:250px;border-radius:10px;margin-top:7px;" />
+            <div class="caption">
+            <h4>Vaibhav Thombre</h4>
+            
+            </div>
+            <ul class="list-inline">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            </ul>
+          </div> <!-- team-member -->
+        </div><!-- team-member -->
+        </div>
+       
+       
+      </div>
+  </section>
+ 
+ 
+    <!-- Modal HTML -->
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" style="color:black;">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+                        </div>
+                        <span class="help-block has-error" id="email-error"></span>
+                    </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                            <input type="password" class="form-control" name="password" id="pwd" placeholder="Password" required>
+                        </div>
+                        <span class="help-block has-error" id="password-error"></span>
+                      </div>
+                    
+                      <button type="button" name="login" id="sub" value="login" class="btn btn-primary btn-block bt-login"  data-loading-text="Signing In....">Login</button>
+                      
+                    </br>
+                    </br>
+                      <div class="login-modal-footer">
+                        <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                          <i class="fa fa-lock"></i>
+                          <a href="" class="forgetpass-tab" data-toggle="modal" data-target="#myModal2"> Forgot password? </a>
+                        
+                        </div>
+                        
+                      </div>
+                      </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!--<button type="button" class="btn btn-primary" name="login">Login</button>-->
+                </div>
+            </div>
+        </div>
+    </div> 
+    <!-- Modal HTML -->
+
+    <div id="myModal1" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title" style="color:black;">SIGNUP</h3>
+                </div>
+                <div class="modal-body">
+                    
+      <center>
+		<form method="POST">
+ {% csrf_token %}
+              <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                            <input type="text" class="form-control" name="sname" id="sname" placeholder="name" required>
+                        </div>
+                        <span class="help-block has-error" id="email-error"></span>
+              </div>
+                <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                            <input type="text" class="form-control" name="susername" id="susername" placeholder="Username" required>
+                        </div>
+                        <span class="help-block has-error" id="email-error"></span>
+                    </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                            <input type="password" class="form-control" name="spwd" id="spwd" placeholder="Password" required>
+                        </div>
+                        <span class="help-block has-error" id="password-error"></span>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                            <input type="password" class="form-control" name="sw" id="sw" placeholder="Re Enter Password" required>
+                        </div>
+                        <span class="help-block has-error" id="password-error"></span>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            <input type="email" class="form-control" name="semail" id="semail" placeholder="email" required>
+                        </div>
+                        <span class="help-block has-error" id="email-error"></span>
+                    </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+                            <input type="number" class="form-control" name="scontact" id="scontact" placeholder="contact" required>
+                        </div>
+                        <span class="help-block has-error" id="password-error"></span>
+                      </div>
+
+      <br>
+        <button type="submit" align="center" class="btn btn-primary" name="signup" id="submit" value="submit">Submit</button>
+	</form>
+      </center>
+      
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+    <div id="myModal2" class="modal fade">
+    <form action="{% url 'login:forgot' %}" method="post">
+    {% csrf_token %}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" style="color:black;">ENTER EMAIL ADDRESS</h4>
+                </div>
+                <div class="modal-body">
+                <form action="" method="post">
+                    
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                            <input type="text" class="form-control" name="email" id="email" placeholder="" required>
+                        </div>
+                        <span class="help-block has-error" id="email-error"></span>
+              </div>
+                    <button type="submit" align="center" class="btn btn-primary" name="signup" value="submit">Submit</button>
+           </form>
+                </div>
+                <div class="modal-footer">
+                    <strong style="margin-left:5px;color:black;">Check your email for your password</strong>
+                    
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+ 
+</div>
+ 
+	
+	<script src="{% static 'login/library/jquery-1.11.3.min.js' %}"></script> 
+   <script src="{% static 'login/library/bootstrap/js/bootstrap.js' %}"></script>
+
+  <script src="{% static 'login/js/typed.js' %}"></script>
+ <script src="{% static 'login/js/common.js' %}"></script>
+  
+
+
+    <script type="text/javascript">
+
+  $(function() {
+     
+        $('#sub').click(function() {
+        var username = document.getElementById('username').value;
+        var password=document.getElementById('pwd').value;
+        
+	if (username=="" || password==""){
+	 	alert("All fields are required !");
+        	return false;
+	}
+          $.post('/signin/', {'username': username,'password':password, 'csrfmiddlewaretoken': '{{ csrf_token }}'}, function(data) {
+            if(data == 'success')
+              window.location.href = "{% url 'home:contest' %}";
+            else
+              alert('Invalid');
+             // append to inner html
+            //alert(data);
+         });
+      });
+    });
+
+  </script>
+
+
+    <script type="text/javascript">
+
+  $(function() {
+     
+        $('#submit').click(function() {
+        var name = document.getElementById('sname').value;
+        var username = document.getElementById('susername').value;
+        var password=document.getElementById('spwd').value;
+        var password1=document.getElementById('sw').value;
+        var email = document.getElementById('semail').value;
+        var contact = document.getElementById('scontact').value;
+	if ( name =="" || username=="" || password=="" || email == "" || contact == "" || username.includes(" ") || password!=password1){
+	 	alert("All fields are required !");
+        	return false;
+	}
+          
+          $.post('/signup/', {'name': name, 'username': username,'pwd':password, 'email':email,'contact':contact,'csrfmiddlewaretoken': '{{ csrf_token }}'}, function(data) {
+	    if(data == 'success')
+              window.location.href = "{% url 'login:index' %}";
+            else
+              alert("Invalid Username");
+        });
+      });
+    });
+
+
+  </script>
+  
+
+
+  <footer>
+    
+    <div class="container">
+    <div class="col-md-6" >
+        <h3>About us</h3>
+        <p>
+            If you passionate about coding, you’ve come to the right place.<br>
+        </p>
+    </div>
+    
+    <div class="col-md-6" >
+        <h3>Contact Us</h3>
+        <ul>
+            <li>Phone : 9923117590 </li>
+            <li>E-mail : programtowin@gmail.com</li>
+        </ul>
+        <p>
+            <small>&copy; 2017 codedaemon reserved</small>
+        </p>
+        <ul class="sm">
+            <li><a href="https://www.facebook.com/onkar.sathe.3517" ><img src="https://www.facebook.com/images/fb_icon_325x325.png" class="img-responsive"></a></li>
+            <li><a href="#" ><img src="https://lh3.googleusercontent.com/00APBMVQh3yraN704gKCeM63KzeQ-zHUi5wK6E9TjRQ26McyqYBt-zy__4i8GXDAfeys=w300" class="img-responsive" ></a></li>
+            <li><a href="#" ><img src="http://playbookathlete.com/wp-content/uploads/2016/10/twitter-logo-4.png" class="img-responsive"  ></a></li>
+        </ul>
+    </div>
+    </div>
+</footer>
+</body>
+
+
+</html>
